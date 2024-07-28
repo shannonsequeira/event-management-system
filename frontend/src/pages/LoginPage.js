@@ -2,11 +2,18 @@ import React from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../actions/authActions';
+<<<<<<< HEAD
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
+=======
+import { Link } from 'react-router-dom';
+
+const LoginPage = () => {
+
+>>>>>>> origin/main
   const pageStyle = {
     backgroundImage: 'url(/green-leaf-texture-leaf-texture-background.jpg)',
     backgroundSize: 'cover',
@@ -27,6 +34,7 @@ const LoginPage = () => {
   };
 
   const dispatch = useDispatch();
+<<<<<<< HEAD
   const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
@@ -44,6 +52,14 @@ const LoginPage = () => {
       console.error('Error during login:', error);
       e.target.reset();
     }
+=======
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle login logic
+    const formData = new FormData(e.target);
+    dispatch(loginUser(formData));
+>>>>>>> origin/main
   };
 
   return (
@@ -59,11 +75,18 @@ const LoginPage = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" name="password" placeholder="Password" required />
           </Form.Group>
+<<<<<<< HEAD
           <Button variant="primary" type="submit" className="mt-3 me-2">Login</Button>
           <Button variant="secondary" as={Link} to="/" className="mt-3">Back</Button>
         </Form>
       </Container>
       <ToastContainer /> {/* ToastContainer to show toast notifications */}
+=======
+          <Button variant="primary" type="submit" className="mt-3">Login</Button>
+          <Button variant="secondary" as={Link} to="/">Back</Button>
+        </Form>
+      </Container>
+>>>>>>> origin/main
     </div>
   );
 };
