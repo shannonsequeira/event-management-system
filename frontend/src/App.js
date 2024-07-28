@@ -1,15 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store';
-import NavBar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import EventPage from './pages/EventPage';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import Dashboard from './components/Dashboard';
-import EventForm from './components/EventForm';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import NavBar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import EventPage from "./pages/EventPage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import Dashboard from "./components/Dashboard";
+import EventForm from "./components/EventForm";
+import UserProfilePage from "./pages/UserProfilePage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/create-event" element={<EventForm />} />
+            <Route path="/profile" element={<UserProfilePage />} />
           </Routes>
         </div>
       </Router>
