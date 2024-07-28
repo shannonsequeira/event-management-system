@@ -3,10 +3,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../actions/authActions';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import { ToastContainer } from 'react-toastify';
-=======
->>>>>>> origin/main
 
 const RegisterPage = () => {
 
@@ -30,7 +27,6 @@ const RegisterPage = () => {
   };
 
   const dispatch = useDispatch();
-<<<<<<< HEAD
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,14 +44,6 @@ const RegisterPage = () => {
       console.error('Error during registration:', error);
       e.target.reset();
     }
-=======
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle register logic
-    const formData = new FormData(e.target);
-    dispatch(registerUser(formData));
->>>>>>> origin/main
   };
 
   return (
@@ -79,18 +67,11 @@ const RegisterPage = () => {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control type="password" name="confirmPassword" placeholder="Confirm Password" required />
           </Form.Group>
-<<<<<<< HEAD
           <Button variant="primary" type="submit" className="mt-3 me-2">Register</Button>
           <Button variant="secondary" as={Link} to="/" className="mt-3">Back</Button>
         </Form>
       </Container>
       <ToastContainer /> {/* ToastContainer to show toast notifications */}
-=======
-          <Button variant="primary" type="submit" className="mt-3">Register</Button>
-          <Button variant="secondary" as={Link} to="/">Back</Button>
-        </Form>
-      </Container>
->>>>>>> origin/main
     </div>
   );
 };
