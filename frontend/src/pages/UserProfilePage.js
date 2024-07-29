@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-// frontend/src/pages/UserProfilePage.js
-import React from 'react';
-import UserProfile from '../components/UserProfile';
-
-const UserProfilePage = () => {
-  return (
-    <div>
-      <UserProfile />
-=======
 import React from "react";
 import {
   Container,
@@ -123,7 +113,6 @@ const UserProfilePage = () => {
           </Col>
         </Row>
       </Container>
->>>>>>> origin/main
     </div>
   );
 };
