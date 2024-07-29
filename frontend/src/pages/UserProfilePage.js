@@ -218,7 +218,7 @@ const UserProfilePage = () => {
           <Col xs={12} md={6} lg={4}>
             <Card className="mt-4" style={cardStyle}>
               <Card.Header as="h5">Events Organized</Card.Header>
-              <ListGroup>
+              {/* <ListGroup>
                 {user.eventsOrganized.length > 0 ? (
                   user.eventsOrganized.map((event, index) => (
                     <ListGroup.Item key={index}>
@@ -226,9 +226,9 @@ const UserProfilePage = () => {
                     </ListGroup.Item>
                   ))
                 ) : (
-                  <ListGroup.Item>No events organized yet.</ListGroup.Item>
+                  <ListGroup.Item>No events organized yet.</ListGroup.Item> 
                 )}
-              </ListGroup>
+              </ListGroup>*/}
             </Card>
           </Col>
         </Row>

@@ -88,6 +88,5 @@ export const fetchUser = () => async (dispatch) => {
     dispatch({ type: "SET_USER", payload: data });
   } catch (error) {
     console.error("Failed to fetch user:", error);
-    // Handle error appropriately (e.g., dispatch an error action)
   }
 };

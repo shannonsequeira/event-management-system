@@ -25,6 +25,8 @@ export const authReducer = (state = initialState, action) => {
       };
     case "auth/logoutUser":
       return initialState;
+
+    //user profile
     case "SET_USER":
       return {
         ...state,

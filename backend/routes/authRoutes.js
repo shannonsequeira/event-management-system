@@ -18,7 +18,7 @@ const authMiddleware = require("../middleware/authMiddleware"); // Adjust the pa
 router.post("/login", loginUser);
 router.post("/register", registerUser);
 
-// Protect routes (example)
+// Profile routes
 router.get("/profile", authMiddleware, (req, res) => {
   console.log("Returning user data:", req.user); // Log user data
   res.json(req.user);
