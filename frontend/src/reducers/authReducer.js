@@ -7,7 +7,7 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "auth/loginUser":
+    case "AUTH_LOGIN_USER":
       return {
         ...state,
         user: action.payload.user,
@@ -15,7 +15,7 @@ export const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         error: null,
       };
-    case "auth/registerUser":
+    case "AUTH_REGISTER_USER":
       return {
         ...state,
         user: action.payload.user,
@@ -23,20 +23,25 @@ export const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         error: null,
       };
-    case "auth/logoutUser":
+    case "AUTH_LOGOUT_USER":
       return initialState;
 
-    //user profile
-    case "SET_USER":
+    case "FETCH_USER_SUCCESS":
       return {
         ...state,
         user: action.payload,
         error: null,
       };
-    case "SET_USER_ERROR":
+    case "FETCH_USER_FAILURE":
       return {
         ...state,
-        error: action.payload,
+        error: action.error,
+      };
+    case "UPDATE_USER":
+      return {
+        ...state,
+        user: action.payload,
+        error: null,
       };
     default:
       return state;

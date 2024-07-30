@@ -20,59 +20,63 @@ const EditProfilePage = () => {
   useEffect(() => {
     if (user) {
       setFormData({
-        name: user.name,
-        email: user.email,
-        profilePicture: user.profilePicture,
-        bio: user.bio,
-        contactNumber: user.contactNumber,
+        name: user.name || "",
+        email: user.email || "",
+        profilePicture: user.profilePicture || "",
+        bio: user.bio || "",
+        contactNumber: user.contactNumber || "",
       });
     } else {
-      dispatch(fetchUser());
+      dispatch(fetchUser()); // Ensure user data is fetched
     }
-  }, [dispatch, user]);
+  }, [user, dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(updateUser(formData));
-    navigate("/profile"); // Updated navigation method
+    try {
+      await dispatch(updateUser(formData));
+      navigate("/profile"); // Navigate to profile page upon successful update
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
-        <Col xs={12} md={6}>
-          <Card>
+        <Col xs={12} md={8} lg={6}>
+          <Card style={{ padding: "20px", borderRadius: "15px" }}>
             <Card.Body>
-              <h2>Edit Profile</h2>
+              <Card.Title>Edit Profile</Card.Title>
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formName" className="mb-3">
+                <Form.Group className="mb-3">
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    required
                   />
                 </Form.Group>
-
-                <Form.Group controlId="formEmail" className="mb-3">
+                <Form.Group className="mb-3">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    required
+                    readOnly
                   />
                 </Form.Group>
-
-                <Form.Group controlId="formProfilePicture" className="mb-3">
+                <Form.Group className="mb-3">
                   <Form.Label>Profile Picture URL</Form.Label>
                   <Form.Control
                     type="text"
@@ -81,19 +85,17 @@ const EditProfilePage = () => {
                     onChange={handleChange}
                   />
                 </Form.Group>
-
-                <Form.Group controlId="formBio" className="mb-3">
+                <Form.Group className="mb-3">
                   <Form.Label>Bio</Form.Label>
                   <Form.Control
                     as="textarea"
-                    rows={3}
                     name="bio"
+                    rows={3}
                     value={formData.bio}
                     onChange={handleChange}
                   />
                 </Form.Group>
-
-                <Form.Group controlId="formContactNumber" className="mb-3">
+                <Form.Group className="mb-3">
                   <Form.Label>Contact Number</Form.Label>
                   <Form.Control
                     type="text"
@@ -102,7 +104,6 @@ const EditProfilePage = () => {
                     onChange={handleChange}
                   />
                 </Form.Group>
-
                 <Button variant="primary" type="submit">
                   Save Changes
                 </Button>

@@ -1,7 +1,8 @@
-// authController.js
+// backend/controllers/authController.js
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel'); // Adjust the path to your User model
+const User = require('../models/userModel'); // Model for interacting with the users table
+const UserProfile = require('../models/userProfileModel'); // Model for interacting with the user_profiles table
 
 // Register a new user
 const registerUser = async (req, res) => {
@@ -17,7 +18,7 @@ const registerUser = async (req, res) => {
 
   try {
     // Check if user already exists
-    const existingUser = await User.findByEmail(email);
+    const existingUser = await User.findByEmail(email); // Ensure this method checks the users table
     if (existingUser) {
       return res.status(400).json({ msg: 'User already exists' });
     }
@@ -34,7 +35,10 @@ const registerUser = async (req, res) => {
     };
 
     // Save user to database
-    const savedUser = await User.create(newUser);
+    const savedUser = await User.create(newUser); // Save to users table
+
+    // Optionally create a profile for the new user in user_profiles table
+    await UserProfile.createProfile(savedUser.id); // Make sure this method exists in userProfileModel.js
 
     // Generate JWT token
     const token = jwt.sign({ id: savedUser.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -48,7 +52,7 @@ const registerUser = async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Error in registerUser:', error); // Log the error with more context
+    console.error('Error in registerUser:', error);
     res.status(500).json({ msg: 'Server error' });
   }
 };
@@ -64,7 +68,7 @@ const loginUser = async (req, res) => {
 
   try {
     // Check for existing user
-    const user = await User.findByEmail(email);
+    const user = await User.findByEmail(email); // Ensure this method checks the users table
     if (!user) {
       return res.status(400).json({ msg: 'User does not exist' });
     }
@@ -87,7 +91,7 @@ const loginUser = async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Error in loginUser:', error); // Log the error with more context
+    console.error('Error in loginUser:', error);
     res.status(500).json({ msg: 'Server error' });
   }
 };

@@ -1,137 +1,7 @@
-// import React from "react";
-// import {
-//   Container,
-//   Button,
-//   Card,
-//   Image,
-//   ListGroup,
-//   Row,
-//   Col,
-// } from "react-bootstrap";
-// import { Link } from "react-router-dom";
-
-// const UserProfilePage = () => {
-//   const pageStyle = {
-//     backgroundImage: "url('/earthy-background.jpg')",
-//     backgroundSize: "cover",
-//     backgroundPosition: "center",
-//     minHeight: "100vh",
-//     color: "white",
-//     padding: "20px",
-//   };
-
-//   const cardStyle = {
-//     backgroundColor: "rgba(34, 49, 63, 0.8)",
-//     color: "white",
-//     padding: "20px",
-//     borderRadius: "15px",
-//     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
-//   };
-
-//   const profilePicStyle = {
-//     borderRadius: "50%",
-//     width: "150px",
-//     height: "150px",
-//     objectFit: "cover",
-//     marginBottom: "20px",
-//   };
-
-//   // Hardcoded user data
-//   const user = {
-//     name: "John Doe",
-//     email: "johndoe@example.com",
-//     profilePicture: "https://via.placeholder.com/150",
-//     bio: "Tech enthusiast and conference organizer.",
-//     contactNumber: "123-456-7890",
-//     eventsOrganized: [
-//       {
-//         title: "Procrastinators Anonymous Annual Meetup",
-//         date: "November 30, 2025",
-//       },
-//       {
-//         title: "Effective Time Management... Eventually",
-//         date: "November 30, 2025",
-//       },
-//     ],
-//   };
-
-//   return (
-//     <div style={pageStyle}>
-//       <Container className="mt-5">
-//         <Row className="justify-content-center">
-//           <Col xs={12} md={6} lg={4}>
-//             <Card style={cardStyle}>
-//               <Card.Body className="text-center">
-//                 <Image
-//                   src={user.profilePicture}
-//                   style={profilePicStyle}
-//                   alt="Profile Picture"
-//                 />
-//                 <Card.Title>{user.name}</Card.Title>
-//                 <Card.Text>
-//                   <strong>Email:</strong> {user.email}
-//                   <br />
-//                   <strong>Bio:</strong> {user.bio}
-//                   <br />
-//                   <strong>Contact Number:</strong> {user.contactNumber}
-//                 </Card.Text>
-//                 <Button
-//                   variant="primary"
-//                   as={Link}
-//                   to="/edit-profile" // Link to edit profile page
-//                   className="mt-3"
-//                 >
-//                   Edit Profile
-//                 </Button>
-//                 <Button
-//                   variant="secondary"
-//                   as={Link}
-//                   to="/"
-//                   className="mt-3 ms-2"
-//                 >
-//                   Back
-//                 </Button>
-//               </Card.Body>
-//             </Card>
-//           </Col>
-
-//           <Col xs={12} md={6} lg={4}>
-//             <Card className="mt-4" style={cardStyle}>
-//               <Card.Header as="h5">Events Organized</Card.Header>
-//               <ListGroup>
-//                 {user.eventsOrganized.length > 0 ? (
-//                   user.eventsOrganized.map((event, index) => (
-//                     <ListGroup.Item key={index}>
-//                       <strong>{event.title}</strong> - {event.date}
-//                     </ListGroup.Item>
-//                   ))
-//                 ) : (
-//                   <ListGroup.Item>No events organized yet.</ListGroup.Item>
-//                 )}
-//               </ListGroup>
-//             </Card>
-//           </Col>
-//         </Row>
-//       </Container>
-//     </div>
-//   );
-// };
-
-// export default UserProfilePage;
-
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../actions/authActions";
-import { useSelector } from "react-redux";
-import {
-  Container,
-  Button,
-  Card,
-  Image,
-  ListGroup,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Container, Button, Card, Image, ListGroup, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const UserProfilePage = () => {
@@ -159,18 +29,18 @@ const UserProfilePage = () => {
     objectFit: "cover",
     marginBottom: "20px",
   };
+
   const dispatch = useDispatch();
+  const { user, error } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
-  // Fetch user data from Redux store
-  const { user, error } = useSelector((state) => state.auth);
-  console.log("User data from Redux store:", user);
 
   if (error) {
     return <div>Error: {error}</div>;
   }
+
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -182,33 +52,19 @@ const UserProfilePage = () => {
           <Col xs={12} md={6} lg={4}>
             <Card style={cardStyle}>
               <Card.Body className="text-center">
-                <Image
-                  src={user.profilePicture}
-                  style={profilePicStyle}
-                  alt="Profile Picture"
-                />
+                <Image src={user.profilePicture || '/default-profile.jpg'} style={profilePicStyle} alt="Profile Picture" />
                 <Card.Title>{user.name}</Card.Title>
                 <Card.Text>
                   <strong>Email:</strong> {user.email}
                   <br />
-                  <strong>Bio:</strong> {user.bio}
+                  <strong>Bio:</strong> {user.bio || 'N/A'}
                   <br />
-                  <strong>Contact Number:</strong> {user.contactNumber}
+                  <strong>Contact Number:</strong> {user.contactNumber || 'N/A'}
                 </Card.Text>
-                <Button
-                  variant="primary"
-                  as={Link}
-                  to="/edit-profile" // Link to edit profile page
-                  className="mt-3"
-                >
+                <Button variant="primary" as={Link} to="/edit-profile" className="mt-3">
                   Edit Profile
                 </Button>
-                <Button
-                  variant="secondary"
-                  as={Link}
-                  to="/"
-                  className="mt-3 ms-2"
-                >
+                <Button variant="secondary" as={Link} to="/" className="mt-3 ms-2">
                   Back
                 </Button>
               </Card.Body>
@@ -218,17 +74,17 @@ const UserProfilePage = () => {
           <Col xs={12} md={6} lg={4}>
             <Card className="mt-4" style={cardStyle}>
               <Card.Header as="h5">Events Organized</Card.Header>
-              {/* <ListGroup>
-                {user.eventsOrganized.length > 0 ? (
+              <ListGroup>
+                {user.eventsOrganized && user.eventsOrganized.length > 0 ? (
                   user.eventsOrganized.map((event, index) => (
                     <ListGroup.Item key={index}>
                       <strong>{event.title}</strong> - {event.date}
                     </ListGroup.Item>
                   ))
                 ) : (
-                  <ListGroup.Item>No events organized yet.</ListGroup.Item> 
+                  <ListGroup.Item>No events organized yet.</ListGroup.Item>
                 )}
-              </ListGroup>*/}
+              </ListGroup>
             </Card>
           </Col>
         </Row>
