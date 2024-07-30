@@ -21,14 +21,18 @@ event-management-system/
 │   │   └── db.js
 │   ├── controllers/
 │   │   ├── authController.js
+│   │   ├── userController.js
 │   │   └── eventController.js
 │   ├── middleware/
+│   │   ├── authMiddleware.js
 │   │   └── corsMiddleware.js
 │   ├── models/
 │   │   ├── eventModel.js
-│   │   └── userModel.js
+│   │   ├── userModel.js
+│   │   └── userProfileModel.js
 │   ├── routes/
 │   │   ├── authRoutes.js 
+│   │   ├── userRoutes.js
 │   │   └── eventRoutes.js
 │   ├── uploads/
 │   ├── .env
@@ -52,6 +56,7 @@ event-management-system/
 │   │   ├── pages/
 │   │   │   ├── EditEventPage.js
 │   │   │   ├── EventPage.js
+│   │   │   ├── EditProfilePage.js
 │   │   │   ├── HomePage.js
 │   │   │   ├── LoginPage.js
 │   │   │   ├── RegisterPage.js
