@@ -21,8 +21,8 @@ event-management-system/
 │   │   └── db.js
 │   ├── controllers/
 │   │   ├── authController.js
-│   │   ├── userController.js
-│   │   └── eventController.js
+│   │   ├── eventController.js
+│   │   └── userController.js
 │   ├── middleware/
 │   │   ├── authMiddleware.js
 │   │   └── corsMiddleware.js
@@ -32,8 +32,8 @@ event-management-system/
 │   │   └── userProfileModel.js
 │   ├── routes/
 │   │   ├── authRoutes.js 
-│   │   ├── userRoutes.js
-│   │   └── eventRoutes.js
+│   │   ├── eventRoutes.js
+│   │   └── userRoutes.js
 │   ├── uploads/
 │   ├── .env
 │   ├── .gitignore
