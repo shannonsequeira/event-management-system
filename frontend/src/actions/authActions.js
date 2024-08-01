@@ -9,7 +9,7 @@ export const loginUser = (userData) => async (dispatch) => {
       userData
     );
     dispatch({ type: "AUTH_LOGIN_USER", payload: res.data });
-    localStorage.setItem('token', res.data.token); // Store token in localStorage
+    localStorage.setItem("token", res.data.token); // Store token in localStorage
     return res; // Return the response to allow chaining
   } catch (error) {
     console.error(
@@ -30,7 +30,7 @@ export const registerUser = (userData) => async (dispatch) => {
     );
     dispatch({ type: "AUTH_REGISTER_USER", payload: res.data });
     toast.success("Registration successful!");
-    localStorage.setItem('token', res.data.token); // Store token in localStorage
+    localStorage.setItem("token", res.data.token); // Store token in localStorage
     return res; // Return the response to allow chaining
   } catch (error) {
     console.error(
@@ -67,17 +67,24 @@ export const updateUser = (userData) => async (dispatch) => {
 // Action to fetch user profile
 export const fetchUser = () => async (dispatch) => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:5000/api/auth/user', {
+    const token = localStorage.getItem("token");
+    const response = await axios.get("http://localhost:5000/api/auth/user", {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
 
-    dispatch({ type: 'FETCH_USER_SUCCESS', payload: response.data });
+    dispatch({ type: "FETCH_USER_SUCCESS", payload: response.data });
   } catch (error) {
-    console.error('Failed to fetch user:', error);
-    dispatch({ type: 'FETCH_USER_FAILURE', error: error.message });
+    console.error("Failed to fetch user:", error);
+    dispatch({ type: "FETCH_USER_FAILURE", error: error.message });
   }
+};
+
+// Action to log out a user
+export const logoutUser = () => (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch({ type: "AUTH_LOGOUT_USER" });
+  toast.success("Logged out successfully!");
 };

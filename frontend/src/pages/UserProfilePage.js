@@ -1,8 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../actions/authActions";
-import { Container, Button, Card, Image, ListGroup, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { fetchUser, logoutUser } from "../actions/authActions";
+import {
+  Container,
+  Button,
+  Card,
+  Image,
+  ListGroup,
+  Row,
+  Col,
+} from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserProfilePage = () => {
   const pageStyle = {
@@ -31,11 +39,17 @@ const UserProfilePage = () => {
   };
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user, error } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/login");
+  };
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -52,20 +66,41 @@ const UserProfilePage = () => {
           <Col xs={12} md={6} lg={4}>
             <Card style={cardStyle}>
               <Card.Body className="text-center">
-                <Image src={user.profilePicture || '/default-profile.jpg'} style={profilePicStyle} alt="Profile Picture" />
+                <Image
+                  src={user.profilePicture || "/default-profile.jpg"}
+                  style={profilePicStyle}
+                  alt="Profile Picture"
+                />
                 <Card.Title>{user.name}</Card.Title>
                 <Card.Text>
                   <strong>Email:</strong> {user.email}
                   <br />
-                  <strong>Bio:</strong> {user.bio || 'N/A'}
+                  <strong>Bio:</strong> {user.bio || "N/A"}
                   <br />
-                  <strong>Contact Number:</strong> {user.contactNumber || 'N/A'}
+                  <strong>Contact Number:</strong> {user.contactNumber || "N/A"}
                 </Card.Text>
-                <Button variant="primary" as={Link} to="/edit-profile" className="mt-3">
+                <Button
+                  variant="primary"
+                  as={Link}
+                  to="/edit-profile"
+                  className="mt-3"
+                >
                   Edit Profile
                 </Button>
-                <Button variant="secondary" as={Link} to="/" className="mt-3 ms-2">
+                <Button
+                  variant="secondary"
+                  as={Link}
+                  to="/"
+                  className="mt-3 ms-2"
+                >
                   Back
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={handleLogout}
+                  className="mt-3 ms-2"
+                >
+                  Logout
                 </Button>
               </Card.Body>
             </Card>
