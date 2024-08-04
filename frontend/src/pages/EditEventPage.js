@@ -1,4 +1,4 @@
-// frontend/src/pages/EditEventPage.js
+// EditEventPage.js
 import React from 'react';
 import EditEvent from '../components/EditEvent';
 
