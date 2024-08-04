@@ -25,6 +25,9 @@ const CustomNavbar = () => (
         <Nav.Link as={Link} to="/Profile">
           profile
         </Nav.Link>
+        <Nav.Link as={Link} to="/about">
+          profile
+        </Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>

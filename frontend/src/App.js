@@ -12,6 +12,7 @@ import EventForm from "./components/EventForm";
 import EventDetail from "./components/EventDetail";
 import UserProfilePage from "./pages/UserProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import AboutUs from "./pages/AboutUs";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/event/:id" element={<EventDetail />} />
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/edit-profile" element={<EditProfilePage />} />
+            <Route path="/about" element={<AboutUs />} />;
           </Routes>
         </div>
       </Router>
