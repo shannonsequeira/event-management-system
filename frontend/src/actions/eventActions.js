@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 // Action to fetch all events
 export const fetchEvents = () => async dispatch => {
@@ -23,9 +24,11 @@ export const createEvent = (event) => async dispatch => {
       }
     });
     dispatch({ type: 'events/createEvent', payload: res.data });
+    toast.success("Created event successfully!");
     return res; // Return the response to allow chaining
   } catch (error) {
     console.error('Error creating event:', error);
+    toast.error("Error creating event. Please try again.");
     throw error; // Rethrow error to handle in the component
   }
 };
@@ -53,9 +56,11 @@ export const editEvent = (id, event) => async dispatch => {
       }
     });
     dispatch({ type: 'events/editEvent', payload: { id, data: res.data } });
+    toast.success("Edited event successfully!");
     return res; // Return the response to allow chaining
   } catch (error) {
     console.error('Error editing event:', error);
+    toast.error("Error editing event. Please try again.");
     throw error; // Rethrow error to handle in the component
   }
 };
@@ -65,8 +70,10 @@ export const deleteEvent = (id) => async dispatch => {
   try {
     await axios.delete(`http://localhost:5000/api/events/${id}`);
     dispatch({ type: 'events/deleteEvent', payload: id });
+    toast.success("Deleted event successfully!");
   } catch (error) {
     console.error('Error deleting event:', error);
+    toast.error("Error deleting event. Please try again.");
     throw error; // Rethrow error to handle in the component
   }
 };

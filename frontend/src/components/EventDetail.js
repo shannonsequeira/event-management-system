@@ -38,7 +38,8 @@ const EventDetail = () => {
           <Card.Text>Ticket Amount: ₹{event.ticket_amount}</Card.Text>
           <Card.Text>Capacity: {event.capacity}</Card.Text>
           <Button variant="primary" as={Link} to={`/edit-event/${id}`} className="mt-3 me-2">Edit</Button>
-          <Button variant="danger" as={Link} to={`/delete-event/${id}`} className="mt-3">Delete</Button>
+          <Button variant="danger" as={Link} to={`/delete-event/${id}`} className="mt-3 me-2">Delete</Button>
+          <Button variant="secondary" as={Link} to="/events" className="mt-3">Back</Button>
         </Card.Body>
       </Card>
     </Container>

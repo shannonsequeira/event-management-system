@@ -1,9 +1,10 @@
 // EditEvent.js
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { fetchEvent, editEvent } from '../actions/eventActions';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { format } from 'date-fns';
 
 const EditEvent = () => {
   const { id } = useParams();
@@ -30,7 +31,11 @@ const EditEvent = () => {
     if (!event) {
       dispatch(fetchEvent(id));
     } else {
-      setFormData(event);
+      setFormData({
+        ...event,
+        start_date: event.start_date ? format(new Date(event.start_date), 'yyyy-MM-dd') : '',
+        end_date: event.end_date ? format(new Date(event.end_date), 'yyyy-MM-dd') : ''
+      });
     }
   }, [dispatch, id, event]);
 
@@ -45,7 +50,12 @@ const EditEvent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(editEvent(id, formData)).then(() => {
+    const formattedData = {
+      ...formData,
+      start_date: formData.start_date ? format(new Date(formData.start_date), 'yyyy-MM-dd') : '',
+      end_date: formData.end_date ? format(new Date(formData.end_date), 'yyyy-MM-dd') : ''
+    };
+    dispatch(editEvent(id, formattedData)).then(() => {
       navigate(`/event/${id}`);
     }).catch(error => {
       console.error('Error editing event:', error);
@@ -185,9 +195,10 @@ const EditEvent = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mt-3 me-2">
           Save Changes
         </Button>
+        <Button variant="secondary" as={Link} to={`/event/${id}`} className="mt-3">Back</Button>
       </Form>
     </Container>
   );

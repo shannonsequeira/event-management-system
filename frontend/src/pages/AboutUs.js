@@ -9,7 +9,6 @@ const AboutUs = () => {
       backgroundSize: "cover",
       backgroundPosition: "center",
       padding: "40px",
-      color: "#fff",
       color: "black",
     },
     title: {

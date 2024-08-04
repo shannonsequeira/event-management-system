@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { createEvent } from '../actions/eventActions';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EventForm = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ const EventForm = () => {
     video_content: null,
     ticket_amount: '',
     capacity: '',
-    user_id: 1 // Assuming the user_id is 1 for now. Adjust as needed.
+    user_id: ''
   });
 
   const dispatch = useDispatch();
