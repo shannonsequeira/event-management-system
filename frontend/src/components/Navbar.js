@@ -23,10 +23,10 @@ const CustomNavbar = () => (
           Dashboard
         </Nav.Link>
         <Nav.Link as={Link} to="/Profile">
-          profile
+          Profile
         </Nav.Link>
         <Nav.Link as={Link} to="/about">
-          profile
+          About Us
         </Nav.Link>
       </Nav>
     </Navbar.Collapse>
