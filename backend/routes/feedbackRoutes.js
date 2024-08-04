@@ -8,6 +8,7 @@ router.post("/", (req, res) => {
   const feedbackData = {
     name: req.body.name,
     email: req.body.email,
+    rating: req.body.rating,
     message: req.body.message,
   };
 
