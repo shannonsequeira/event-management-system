@@ -16,6 +16,7 @@ import AboutUs from "./pages/AboutUs";
 import EditEventPage from "./pages/EditEventPage"; 
 import DeleteEventPage from "./pages/DeleteEventPage";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/about" element={<AboutUs />} />
           </Routes>
         </div>
+        < Footer />
       </Router>
     </Provider>
   );

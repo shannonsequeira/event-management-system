@@ -70,6 +70,7 @@ const UserProfilePage = () => {
                   src={user.profilePicture || "/default-profile.jpg"}
                   style={profilePicStyle}
                   alt="Profile Picture"
+                  roundedCircle
                 />
                 <Card.Title>{user.name}</Card.Title>
                 <Card.Text>
