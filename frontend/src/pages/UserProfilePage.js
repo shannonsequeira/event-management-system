@@ -90,7 +90,7 @@ const UserProfilePage = () => {
                 <Button
                   variant="secondary"
                   as={Link}
-                  to="/"
+                  to="/events"
                   className="mt-3 ms-2"
                 >
                   Back

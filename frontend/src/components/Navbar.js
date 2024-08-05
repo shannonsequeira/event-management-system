@@ -22,7 +22,7 @@ const CustomNavbar = () => (
         <Nav.Link as={Link} to="/dashboard">
           Dashboard
         </Nav.Link>
-        <Nav.Link as={Link} to="/Profile">
+        <Nav.Link as={Link} to="/profile">
           Profile
         </Nav.Link>
         <Nav.Link as={Link} to="/about">

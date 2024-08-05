@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser, fetchUser } from "../actions/authActions";
 import { Container, Form, Button, Card, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"; // Updated import
+import { Link, useNavigate } from "react-router-dom"; // Updated import
 
 const EditProfilePage = () => {
   const dispatch = useDispatch();
@@ -106,6 +106,14 @@ const EditProfilePage = () => {
                 </Form.Group>
                 <Button variant="primary" type="submit">
                   Save Changes
+                </Button>
+                <Button
+                  variant="secondary"
+                  as={Link}
+                  to="/profile"
+                  className="ms-2"
+                >
+                  Back
                 </Button>
               </Form>
             </Card.Body>
