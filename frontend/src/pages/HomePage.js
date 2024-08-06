@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Button, Card, Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Calendar, ShieldCheck, Ticket, Bell, PersonCircle } from 'react-bootstrap-icons'; // Import relevant icons
+import { Calendar, ShieldCheck, Ticket, Bell, PersonCircle,Speedometer2 } from 'react-bootstrap-icons'; // Import relevant icons
 
 const HomePage = () => {
 
@@ -22,7 +22,7 @@ const HomePage = () => {
     padding: '20px',
     borderRadius: '10px', // Rounded corners
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)', // Shadow for a card effect
-    marginBottom: '40px', // Space between sections
+    marginBottom: '80px', // Space between sections
     color: 'white', // Ensuring text color is white
   };
 
@@ -32,11 +32,11 @@ const HomePage = () => {
   };
 
   const servicesSectionStyle = {
-    padding: '40px 20px',
+    padding: '40px 20px 5px 20px',
     backgroundColor: 'rgba(0, 0, 0, 0.8)', // Slightly different background color for contrast
     borderRadius: '10px',
     color: 'white', // Ensuring text color is white
-    marginBottom: '40px', // Space between sections
+    marginBottom: '80px', // Space between sections
   };
 
   const serviceCardStyle = {
@@ -57,14 +57,14 @@ const HomePage = () => {
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     borderRadius: '10px',
     color: 'white',
-    marginBottom: '40px',
+    marginBottom: '80px',
   };
 
   return (
     <div style={pageStyle}>
       <Container>
         {/* Updated Section with Transparent Rounded Card Style */}
-        <section style={{ padding: '20px' }}>
+        <section style={{ padding: '20px 0px 0px 0px', marginTop:'20px' }}>
           <Card style={sectionStyle}>
             <Card.Body>
               <div className="row">
@@ -75,7 +75,7 @@ const HomePage = () => {
                   <p className="lead">Our system helps you manage and track all your events seamlessly. Register or login to get started.</p>
                   <p>
                     <Button variant="primary" as={Link} to="/register" className="me-2">Register</Button>
-                    <Button variant="secondary" as={Link} to="/login">Login</Button>
+                    <Button variant="success" as={Link} to="/login">Login</Button>
                   </p>
                 </div>
                 <div className="col-lg-6">
@@ -87,8 +87,8 @@ const HomePage = () => {
         </section>
 
         {/* Carousel Section */}
-        <section style={{ padding: '20px' }}>
-          <Carousel>
+        <section >
+          <Carousel style={sectionStyle}>
             <Carousel.Item>
               <img
                 className="d-block w-100"
@@ -173,7 +173,7 @@ const HomePage = () => {
               </div>
               <div className="col-sm-6 col-lg-4 mb-3">
                 <div style={serviceCardStyle}>
-                  <Calendar className="text-primary" size={40} />
+                  <Speedometer2 className="text-primary" size={40} />
                   <h6 style={{ color: 'white' }}>Comprehensive Dashboard</h6>
                   <p style={textMutedStyle}>Organizers can access a detailed dashboard to manage events, view analytics, and more.</p>
                 </div>

@@ -47,6 +47,7 @@ const EventList = () => {
           ))}
         </tbody>
       </Table>
+      <br></br>
     </div>
   );
 };
