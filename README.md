@@ -18,22 +18,25 @@
 event-management-system/
 ├── backend/
 │   ├── config/
+│   │   ├── createTables.js
 │   │   └── db.js
 │   ├── controllers/
 │   │   ├── authController.js
-│   │   ├── eventController.js
-│   │   └── userController.js
+│   │   ├── userController.js
+│   │   └── eventController.js
 │   ├── middleware/
 │   │   ├── authMiddleware.js
 │   │   └── corsMiddleware.js
 │   ├── models/
 │   │   ├── eventModel.js
+│   │   ├── feedbackModel.js
 │   │   ├── userModel.js
 │   │   └── userProfileModel.js
 │   ├── routes/
 │   │   ├── authRoutes.js 
-│   │   ├── eventRoutes.js
-│   │   └── userRoutes.js
+│   │   ├── feedbackRoutes.js
+│   │   ├── userRoutes.js
+│   │   └── eventRoutes.js
 │   ├── uploads/
 │   ├── .env
 │   ├── .gitignore
@@ -51,20 +54,25 @@ event-management-system/
 │   │   │   ├── EventDetails.js
 │   │   │   ├── EventForm.js
 │   │   │   ├── EventList.js
+│   │   │   ├── FeedbackForm.js
+│   │   │   ├── EFooter.js
 │   │   │   ├── Navbar.js
+│   │   │   ├── Testimonials.js
 │   │   │   └── UserProfile.js
 │   │   ├── pages/
+│   │   │   ├── AboutUs.js
 │   │   │   ├── EditEventPage.js
-│   │   │   ├── EventPage.js
 │   │   │   ├── EditProfilePage.js
+│   │   │   ├── EventPage.js
 │   │   │   ├── HomePage.js
 │   │   │   ├── LoginPage.js
 │   │   │   ├── RegisterPage.js
 │   │   │   └── UserProfilePage.js
-│   │   ├── reducers/
-│   │   │   ├── authReducer.js
-│   │   │   ├── eventReducer.js
-│   │   │   └── index.js
+│   │   └── reducers/
+│   │       ├── authReducer.js
+│   │       ├── index.js
+│   │       ├── eventReducer.js
+│   │       └── userReducer.js
 │   ├── App.css
 │   ├── App.js
 │   ├── App.test.js
@@ -119,7 +127,7 @@ event-management-system/
 > > ```sh
 > > npm install bcryptjs jsonwebtoken
 > > ```
-
+>
 > **Frontend**
 >
 > > - Installing frontend dependencies
@@ -157,10 +165,17 @@ event-management-system/
 > > ```sh
 > > npm install react-icons
 > > ```
+> > ```sh
+> > npm install react-icons --legacy-peer-deps
+> > ```
+> > 
+> > - Installing chart.js for charts
 > >
 > > ```sh
 > > npm install chart.js react-chartjs-2
 > > ```
+> >
+> > - Installing react-toastify for toast messages
 > >
 > > ```sh
 > > npm install react-toastify
@@ -187,14 +202,20 @@ Ensure a script in the root `event-management-system` named `package.json` file 
   - Basic setup completed with user authentication, event management endpoints, and database connectivity.
   - Implemented  authentication of user login and registration.
   - Generated jwt token for hashing passwords while storing them.
+  - Added session based login with jwt.
   - Added event and user models to define the structure and relationships of the data stored in the database.
   - Database has been updated to implement triggers and handle user profile data as well while following a file system approach to store images and videos.
   - Created an uploads directory to store uploaded images and videos.
+  - Added feedback model and endpoint to store user feedback.
 - **Frontend**: 
-  - Updated implementation of create event form and integrated with the backend.
+  - Implemented create event form and integrated with the backend.
+  - Implemented edit and delete event form and integrated with the backend.
   - Event listing has been linked to respective event details.
   - Registration and login form structure has been completed and are functional.
+  - Implemented search and filter functionality for events to offer improved user experience.
   - Implemented toast notifications to provide updates on success or failure for login and register features.
+  - Designed basic UI of the site.
+
 
 
 ## Future Aspects to Complete
@@ -207,6 +228,7 @@ Ensure a script in the root `event-management-system` named `package.json` file 
 - **Complete Event Details Component**: Allow users to view complete data about selected event.
 - **Implement Event Registration**: Allow users to register for events.
 - **General & Personalized Dashboards**: Allow users to view their individual stats. Allow users to view stats of all events hosted.
+- **Notifications & Reminders**: Link calender and email for dedicated and improved updates.
 
 ### Front-End Features
 
@@ -236,7 +258,7 @@ Ensure a script in the root `event-management-system` named `package.json` file 
 ### Deployment
 
 - **Production Build**: Ensure correct production build and environment variables.
-- **Hosting**: Deploy to a hosting service (e.g., Vercel, Netlify) and test production environment.
+- **Hosting**: Deploy to a hosting service (e.g., Vercel, Netlify, Render, etc.) and test production environment.
 
 ### Documentation
 
