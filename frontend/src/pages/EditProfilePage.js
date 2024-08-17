@@ -12,9 +12,9 @@ const EditProfilePage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    profilePicture: "",
+    profile_picture: "",
     bio: "",
-    contactNumber: "",
+    contact_number: "",
   });
 
   useEffect(() => {
@@ -22,9 +22,9 @@ const EditProfilePage = () => {
       setFormData({
         name: user.name || "",
         email: user.email || "",
-        profilePicture: user.profilePicture || "",
+        profile_picture: user.profile_picture || "",
         bio: user.bio || "",
-        contactNumber: user.contactNumber || "",
+        contact_number: user.contact_number || "",
       });
     } else {
       dispatch(fetchUser()); // Ensure user data is fetched
@@ -80,8 +80,8 @@ const EditProfilePage = () => {
                   <Form.Label>Profile Picture URL</Form.Label>
                   <Form.Control
                     type="text"
-                    name="profilePicture"
-                    value={formData.profilePicture}
+                    name="profile_picture"
+                    value={formData.profile_picture}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -99,8 +99,8 @@ const EditProfilePage = () => {
                   <Form.Label>Contact Number</Form.Label>
                   <Form.Control
                     type="text"
-                    name="contactNumber"
-                    value={formData.contactNumber}
+                    name="contact_number"
+                    value={formData.contact_number}
                     onChange={handleChange}
                   />
                 </Form.Group>

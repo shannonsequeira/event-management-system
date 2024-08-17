@@ -67,7 +67,7 @@ const UserProfilePage = () => {
             <Card style={cardStyle}>
               <Card.Body className="text-center">
                 <Image
-                  src={user.profilePicture || "/default-profile.jpg"}
+                  src={user.profile_picture || "/logo192.png"}
                   style={profilePicStyle}
                   alt="Profile Picture"
                   roundedCircle
@@ -78,7 +78,7 @@ const UserProfilePage = () => {
                   <br />
                   <strong>Bio:</strong> {user.bio || "N/A"}
                   <br />
-                  <strong>Contact Number:</strong> {user.contactNumber || "N/A"}
+                  <strong>Contact Number:</strong> {user.contact_number || "N/A"}
                 </Card.Text>
                 <Button
                   variant="primary"

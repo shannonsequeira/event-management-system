@@ -82,11 +82,6 @@ const EventList = () => {
       }}
     >
       <Row className="mb-4">
-        <Col>
-          <h1 style={{ color: "#343a40", textAlign: "center" }}>Event List</h1>
-        </Col>
-      </Row>
-      <Row className="mb-4">
         <Col md={6}>
           <InputGroup>
             <InputGroup.Text>Search</InputGroup.Text>
